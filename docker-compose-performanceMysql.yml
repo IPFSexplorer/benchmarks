@@ -1,0 +1,34 @@
+version: "3.1"
+
+services:
+    mysql:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        volumes:
+            - ./src/testPerformance/testDB.sql:/docker-entrypoint-initdb.d/testDB.sql
+        environment:
+            MYSQL_ROOT_PASSWORD: "404363289"
+
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - "18080:8080"
+
+    performancetestmysql:
+        restart: always
+        image: performancetest:latest
+        build:
+            context: ./
+        environment:
+            - mysqlPort=3306
+            - mysqlHost=mysql
+            - mysqlUser=root
+            - mysqlPassword=404363289
+            - mysqlDatabase=performance
+        volumes:
+            - ./benchMysql.log:/usr/src/app/dist/bench.log
+        command: ["node", "/usr/src/app/dist/src/testPerformance/mysql"]
+        depends_on:
+            - "mysql"

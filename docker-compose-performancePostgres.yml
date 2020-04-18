@@ -1,0 +1,30 @@
+version: "3.1"
+
+services:
+    postgres:
+        image: postgres
+        restart: always
+        environment:
+            POSTGRES_PASSWORD: "404363289"
+
+    adminer:
+        image: adminer
+        restart: always
+        ports: "18080:8080"
+
+    performancetestPostgres:
+        restart: always
+        image: performancetest:latest
+        build:
+            context: ./
+        environment:
+            - postgresPort=5432
+            - postgresHost=postgres
+            - postgresUser=postgres
+            - postgresPassword=404363289
+            - postgresDatabase=performance
+        volumes:
+            - ./benchPostgres.log:/usr/src/app/dist/bench.log
+        command: ["node", "/usr/src/app/dist/src/testPerformance/postgres"]
+        depends_on:
+            - "postgres"
