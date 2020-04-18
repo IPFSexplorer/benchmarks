@@ -5,8 +5,10 @@ services:
         image: mysql
         command: --default-authentication-plugin=mysql_native_password
         restart: always
+        ports:
+            - "13306:3306"
         volumes:
-            - ./src/testPerformance/testDB.sql:/docker-entrypoint-initdb.d/testDB.sql
+            - ./src/testPerformance/testDBmysql.sql:/docker-entrypoint-initdb.d/testDB.sql
         environment:
             MYSQL_ROOT_PASSWORD: "404363289"
 
