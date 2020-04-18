@@ -1,0 +1,19 @@
+version: "3.1"
+
+services:
+    explorer:
+        image: performancetest:latest
+        restart: always
+        # ports:
+        #     - "13306:3306"
+
+    performancetestexplorer:
+        restart: always
+        image: performancetest:latest
+        build:
+            context: ./
+        volumes:
+            - ./benchExplorer.log:/usr/src/app/dist/bench.log
+        command: ["node", "/usr/src/app/dist/src/testPerformance/explorer"]
+        depends_on:
+            - "explorer"
