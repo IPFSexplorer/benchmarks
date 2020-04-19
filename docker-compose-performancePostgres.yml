@@ -1,23 +1,6 @@
 version: "3.1"
 
 services:
-    postgres:
-        image: postgres
-        restart: always
-        ports:
-            - "15432:5432"
-        volumes:
-            - ./src/testPerformance/testDBpostgres.sql:/docker-entrypoint-initdb.d/testDB.sql
-        environment:
-            POSTGRES_PASSWORD: "404363289"
-            POSTGRES_DB: "performance"
-
-    adminer:
-        image: adminer
-        restart: always
-        ports:
-            - "18080:8080"
-
     performancetestPostgres:
         restart: always
         image: performancetest:latest

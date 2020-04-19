@@ -1,14 +1,9 @@
 version: "3.1"
 
 services:
-    explorer:
-        image: performancetest:latest
-        restart: always
-        # ports:
-        #     - "13306:3306"
-
     performancetestexplorer:
         restart: always
+        network_mode: host
         image: performancetest:latest
         build:
             context: ./
