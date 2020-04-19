@@ -67,7 +67,6 @@ config();
             },
         );
         await RunAsync(suite);
-        suite.reset();
         await Database.selectedDatabase.waitForAllTransactionsDone();
     }
 })();
