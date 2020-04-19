@@ -12,28 +12,27 @@ const connection = mysql.createConnection({
     database: process.env.mysqlDatabase,
 });
 
-const suite = new Benchmark.Suite("mysql", {
-    async: false,
-}).add(
-    "mysql",
-    async function(deferrer) {
-        connection.query(
-            "SELECT * FROM authors JOIN posts ON posts.author_id=authors.id  WHERE authors.id=" +
-                (Math.floor(Math.random() * 1001) + 1) +
-                " ;",
-            (error, results, fields) => {
-                if (error) throw error;
-                deferrer.resolve();
-            },
-        );
-    },
-    {
-        defer: true,
-    },
-);
-
 (async () => {
     while (true) {
+        const suite = new Benchmark.Suite("mysql", {
+            async: false,
+        }).add(
+            "mysql",
+            async function(deferrer) {
+                connection.query(
+                    "SELECT * FROM authors JOIN posts ON posts.author_id=authors.id  WHERE authors.id=" +
+                        (Math.floor(Math.random() * 1001) + 1) +
+                        " ;",
+                    (error, results, fields) => {
+                        if (error) throw error;
+                        deferrer.resolve();
+                    },
+                );
+            },
+            {
+                defer: true,
+            },
+        );
         await RunAsync(suite);
     }
 })();

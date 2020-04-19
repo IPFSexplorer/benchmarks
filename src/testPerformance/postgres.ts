@@ -17,24 +17,23 @@ const sql = postgres(
         process.env.postgresDatabase,
 );
 
-const suite = new Benchmark.Suite("postgres", {
-    async: false,
-}).add(
-    "postgres",
-    async function(deferrer) {
-        await sql`
+(async () => {
+    while (true) {
+        const suite = new Benchmark.Suite("postgres", {
+            async: false,
+        }).add(
+            "postgres",
+            async function(deferrer) {
+                await sql`
             SELECT * FROM authors JOIN posts ON posts.author_id=authors.id  WHERE authors.id=${sql(
                 Math.floor(Math.random() * 1001) + 1,
             )} ;`;
-        deferrer.resolve();
-    },
-    {
-        defer: true,
-    },
-);
-
-(async () => {
-    while (true) {
+                deferrer.resolve();
+            },
+            {
+                defer: true,
+            },
+        );
         await RunAsync(suite);
     }
 })();
