@@ -51,10 +51,12 @@ config();
             "explorer",
             async function(deferrer) {
                 try {
-                    await await new Author()
-                        .where("id")
-                        .equal(Math.floor(Math.random() * 1001) + 1)
-                        .first();
+                    console.log(
+                        ((await await new Author()
+                            .where("id")
+                            .equal(Math.floor(Math.random() * 1001) + 1)
+                            .first()) as Author).id,
+                    );
                 } catch (ex) {
                     console.log("not yet sync");
                     await delay(2000);
