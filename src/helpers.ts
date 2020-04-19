@@ -26,7 +26,7 @@ export function RunAsync(suite) {
     return new Promise(resolve => {
         suite.on("complete", function() {
             for (let i = 0; i < this.length; i++) {
-                logger.info(`${this[i].name} ${this[i].hz} ops/sec ${this[i].stats.sample.length}`);
+                logger.info(`${this[i].hz}`);
             }
             resolve();
         });
