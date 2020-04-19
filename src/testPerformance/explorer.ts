@@ -8,6 +8,7 @@ import Keystore from "orbit-db-keystore";
 import { delay } from "explorer-core/src/common";
 import IPFSconnector from "explorer-core/src/ipfs/IPFSConnector";
 import Protector from "libp2p-pnet";
+import getPort from "get-port";
 config();
 
 const suite = new Benchmark.Suite("explorer", {
@@ -38,8 +39,9 @@ const suite = new Benchmark.Suite("explorer", {
         config: {
             Addresses: {
                 Swarm: [
-                    "/dns4/kancel.mucka.sk/tcp/19091/ws/p2p-webrtc-star",
-                    "/dns4/kancel.mucka.sk/tcp/19090/ws/p2p-websocket-star",
+                    "/ip4/0.0.0.0/tcp/" + (await getPort()),
+                    "/dns4/server.local/tcp/19091/ws/p2p-webrtc-star",
+                    "/dns4/server.local/tcp/19090/ws/p2p-websocket-star",
                 ],
             },
         },

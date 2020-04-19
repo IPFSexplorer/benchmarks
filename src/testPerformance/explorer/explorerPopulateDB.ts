@@ -18,8 +18,9 @@ console.log(dbName);
         config: {
             Addresses: {
                 Swarm: [
-                    "/dns4/kancel.mucka.sk/tcp/19091/ws/p2p-webrtc-star",
-                    "/dns4/kancel.mucka.sk/tcp/19090/ws/p2p-websocket-star",
+                    "/ip4/0.0.0.0/tcp/" + process.env.explorerTcpPort,
+                    "/dns4/server.local/tcp/19091/ws/p2p-webrtc-star",
+                    "/dns4/server.local/tcp/19090/ws/p2p-websocket-star",
                 ],
             },
         },
