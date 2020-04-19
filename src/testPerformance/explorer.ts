@@ -18,6 +18,7 @@ config();
             Addresses: {
                 Swarm: [
                     "/ip4/0.0.0.0/tcp/" + (await getPort()),
+                    "/ip4/127.0.0.1/tcp/" + (await getPort()) + "/ws",
                     "/dns4/server.local/tcp/19091/ws/p2p-webrtc-star",
                     "/dns4/server.local/tcp/19090/ws/p2p-websocket-star",
                 ],

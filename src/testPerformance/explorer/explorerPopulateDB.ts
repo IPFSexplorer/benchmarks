@@ -19,6 +19,7 @@ console.log(dbName);
             Addresses: {
                 Swarm: [
                     "/ip4/0.0.0.0/tcp/" + process.env.explorerTcpPort,
+                    "/ip4/127.0.0.1/tcp/" + process.env.explorerWsPort + "/ws",
                     "/dns4/server.local/tcp/19091/ws/p2p-webrtc-star",
                     "/dns4/server.local/tcp/19090/ws/p2p-websocket-star",
                 ],
