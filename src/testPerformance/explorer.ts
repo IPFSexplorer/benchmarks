@@ -51,12 +51,10 @@ config();
             "explorer",
             async function(deferrer) {
                 try {
-                    console.log(
-                        ((await await new Author()
-                            .where("id")
-                            .equal(Math.floor(Math.random() * 1001) + 1)
-                            .first()) as Author).id,
-                    );
+                    await new Author()
+                        .where("id")
+                        .equal(Math.floor(Math.random() * 1001) + 1)
+                        .first();
                 } catch (ex) {
                     console.log("not yet sync");
                     await delay(2000);
@@ -69,6 +67,5 @@ config();
             },
         );
         await RunAsync(suite);
-        await Database.selectedDatabase.waitForAllTransactionsDone();
     }
 })();
