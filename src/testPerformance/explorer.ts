@@ -68,6 +68,7 @@ const suite = new Benchmark.Suite("explorer", {
     Database.select("performance");
     while (true) {
         await RunAsync(suite);
+        suite.reset();
         await Database.selectedDatabase.waitForAllTransactionsDone();
     }
 })();
