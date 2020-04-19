@@ -7,8 +7,8 @@ services:
         build:
             context: ./
         environment:
-            - postgresPort=5432
-            - postgresHost=postgres
+            - postgresPort=15432
+            - postgresHost=server.local
             - postgresUser=postgres
             - postgresPassword=404363289
             - postgresDatabase=performance

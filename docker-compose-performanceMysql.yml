@@ -7,8 +7,8 @@ services:
         build:
             context: ./
         environment:
-            - mysqlPort=3306
-            - mysqlHost=mysql
+            - mysqlPort=13306
+            - mysqlHost=server.local
             - mysqlUser=root
             - mysqlPassword=404363289
             - mysqlDatabase=performance
