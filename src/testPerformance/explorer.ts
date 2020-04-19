@@ -4,23 +4,15 @@ import Benchmark from "benchmark";
 import Database from "explorer-core/src/database/DAL/database/databaseStore";
 import IdentityProvider from "orbit-db-identity-provider";
 import Author from "./explorer/Author";
-import Keystore from "orbit-db-keystore";
 import { delay } from "explorer-core/src/common";
 import IPFSconnector from "explorer-core/src/ipfs/IPFSConnector";
 import Protector from "libp2p-pnet";
 import getPort from "get-port";
-import { mkdir } from "fs";
 config();
 
 (async () => {
-    const id = new Date().getTime().toString() + Math.random().toString();
-    mkdir("./" + id, { recursive: true }, err => {
-        if (err) throw err;
-    });
-    console.log(id);
-
     IPFSconnector.setConfig({
-        repo: id,
+        repo: "explorer",
         config: {
             Addresses: {
                 Swarm: [
@@ -44,10 +36,10 @@ config();
             },
         },
     });
-    const keystore = new Keystore(id);
+    const id = (await (await IPFSconnector.getInstanceAsync()).node.id()).id;
+    console.log(id);
     const identity = await IdentityProvider.createIdentity({
-        id: new Date().getTime().toString(),
-        keystore,
+        id,
     });
 
     Database.connect("performance", identity);
