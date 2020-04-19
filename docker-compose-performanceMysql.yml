@@ -15,5 +15,3 @@ services:
         volumes:
             - ./benchMysql.log:/usr/src/app/dist/bench.log
         command: ["node", "/usr/src/app/dist/src/testPerformance/mysql"]
-        depends_on:
-            - "mysql"

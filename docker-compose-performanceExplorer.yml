@@ -10,5 +10,3 @@ services:
         volumes:
             - ./benchExplorer.log:/usr/src/app/dist/bench.log
         command: ["node", "/usr/src/app/dist/src/testPerformance/explorer"]
-        depends_on:
-            - "explorer"

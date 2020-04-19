@@ -24,10 +24,12 @@ services:
             MYSQL_ROOT_PASSWORD: "404363289"
 
     explorer:
-        image: performancetest:latest
         restart: always
         network_mode: host
-        
+        image: performancetest:latest
+        build:
+            context: ./
+        command: ["node", "/usr/src/app/dist/src/testPerformance/explorer/explorerPopulateDB"]
 
     adminer:
         image: adminer
