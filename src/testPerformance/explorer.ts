@@ -9,10 +9,16 @@ import { delay } from "explorer-core/src/common";
 import IPFSconnector from "explorer-core/src/ipfs/IPFSConnector";
 import Protector from "libp2p-pnet";
 import getPort from "get-port";
+import { mkdir } from "fs";
 config();
 
 (async () => {
     const id = new Date().getTime().toString() + Math.random().toString();
+    mkdir("./" + id, { recursive: true }, err => {
+        if (err) throw err;
+    });
+    console.log(id);
+
     IPFSconnector.setConfig({
         repo: id,
         config: {
