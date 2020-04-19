@@ -31,8 +31,7 @@ services:
             context: ./
         command: ["node", "/usr/src/app/dist/src/testPerformance/explorer/explorerPopulateDB"]
         environment:
-            explorerTcpPort: "5558"
-            explorerWsPort: "5559"
+            explorerDatabase: "performance"
 
     adminer:
         image: adminer

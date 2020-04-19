@@ -13,7 +13,7 @@ config();
 
 (async () => {
     IPFSconnector.setConfig({
-        repo: "explorer2",
+        repo: "explorer",
         config: {
             Addresses: {
                 Swarm: [

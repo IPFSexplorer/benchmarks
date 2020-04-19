@@ -9,6 +9,7 @@ import Protector from "libp2p-pnet";
 import { authors } from "./testDBexplorer";
 import Post from "./Post";
 import Author from "./Author";
+import getPort from "get-port";
 
 const dbName = process.env.explorerDatabase;
 console.log(dbName);
@@ -18,8 +19,8 @@ console.log(dbName);
         config: {
             Addresses: {
                 Swarm: [
-                    "/ip4/0.0.0.0/tcp/" + process.env.explorerTcpPort,
-                    "/ip4/127.0.0.1/tcp/" + process.env.explorerWsPort + "/ws",
+                    "/ip4/0.0.0.0/tcp/" + (await getPort()),
+                    "/ip4/127.0.0.1/tcp/" + (await getPort()) + "/ws",
                     "/dns4/server.local/tcp/19091/ws/p2p-webrtc-star",
                     "/dns4/server.local/tcp/19090/ws/p2p-websocket-star",
                 ],
