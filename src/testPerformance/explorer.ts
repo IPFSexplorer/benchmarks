@@ -12,8 +12,9 @@ import getPort from "get-port";
 config();
 
 (async () => {
+    const id = new Date().getTime().toString() + Math.random().toString();
     IPFSconnector.setConfig({
-        repo: "explorer",
+        repo: id,
         config: {
             Addresses: {
                 Swarm: [
@@ -37,7 +38,7 @@ config();
             },
         },
     });
-    const keystore = new Keystore("keystoreee");
+    const keystore = new Keystore(id);
     const identity = await IdentityProvider.createIdentity({
         id: new Date().getTime().toString(),
         keystore,
