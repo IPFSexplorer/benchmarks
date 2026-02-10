@@ -50,7 +50,7 @@
         "babel-jest": "^25.1.0",
         "chai": "^4.2.0",
         "concurrently": "^5.0.0",
-        "eslint": "^6.4.0",
+        "eslint": "^9.26.0",
         "jest": "^25.1.0",
         "nodemon": "^1.19.2",
         "ts-jest": "^24.1.0",
